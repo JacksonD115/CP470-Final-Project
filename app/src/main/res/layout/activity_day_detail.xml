@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/day_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Day 1: Introduction"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/day_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description of the day's learning"
+            android:textSize="16sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Resources Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📚 Study Resources"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/resources_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Practice Questions Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="❓ Practice Questions"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/questions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+</ScrollView>
