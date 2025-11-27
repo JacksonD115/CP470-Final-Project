@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/plan_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Learning Plan Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/plan_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Topic: Example Topic"
+            android:textSize="14sp"
+            android:textColor="#424242"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/plan_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7 day plan"
+            android:textSize="14sp"
+            android:textColor="#424242"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/plan_created"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Created on Jan 1, 2025"
+            android:textSize="12sp"
+            android:textColor="#757575" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

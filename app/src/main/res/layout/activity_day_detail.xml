@@ -10,6 +10,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
+
         <TextView
             android:id="@+id/day_title"
             android:layout_width="match_parent"
@@ -28,6 +36,42 @@
             android:textSize="16sp"
             android:textColor="#757575"
             android:layout_marginBottom="24dp"/>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btn_previous_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Previous"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_mark_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mark Complete"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_next_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next"
+                android:layout_marginStart="4dp" />
+
+        </LinearLayout>
 
         <!-- Resources Section -->
         <TextView
@@ -60,7 +104,15 @@
             android:id="@+id/questions_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_share_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share This Day"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 </ScrollView>

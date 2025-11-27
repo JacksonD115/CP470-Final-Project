@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 public class DayDetailActivity extends AppCompatActivity {
@@ -19,6 +22,11 @@ public class DayDetailActivity extends AppCompatActivity {
     private LinearLayout questionsContainer;
     private TextView dayTitle;
     private TextView dayDescription;
+    private ProgressBar progressBar;
+    private Button markCompleteButton;
+    private Button shareDayButton;
+    private Button nextDayButton;
+    private Button previousDayButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,29 @@ public class DayDetailActivity extends AppCompatActivity {
         dayDescription = findViewById(R.id.day_description);
         resourcesContainer = findViewById(R.id.resources_container);
         questionsContainer = findViewById(R.id.questions_container);
+
+        progressBar = findViewById(R.id.progress_bar);
+        markCompleteButton = findViewById(R.id.btn_mark_complete);
+        shareDayButton = findViewById(R.id.btn_share_day);
+        nextDayButton = findViewById(R.id.btn_next_day);
+        previousDayButton = findViewById(R.id.btn_previous_day);
+
+        markCompleteButton.setOnClickListener(v -> {
+            showSnackbar("Day marked as complete!");
+            Toast.makeText(this, "Great job!", Toast.LENGTH_SHORT).show();
+        });
+
+        shareDayButton.setOnClickListener(v -> {
+            showSnackbar("Sharing day content...");
+        });
+
+        nextDayButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Next day", Toast.LENGTH_SHORT).show();
+        });
+
+        previousDayButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Previous day", Toast.LENGTH_SHORT).show();
+        });
 
         setupDayContent();
     }
@@ -103,6 +134,13 @@ public class DayDetailActivity extends AppCompatActivity {
             });
 
             questionsContainer.addView(questionCard);
+        }
+    }
+
+    private void showSnackbar(String message) {
+        View rootView = findViewById(android.R.id.content);
+        if (rootView != null) {
+            Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show();
         }
     }
 }

@@ -1,7 +1,10 @@
 package com.example.cp470project;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +16,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cp470project.data.LearningPlanEntity;
+import com.example.cp470project.data.LearningRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +39,7 @@ public class ResultsActivity extends AppCompatActivity {
     private DayAdapter dayAdapter;
     private boolean isLoading;
     private Button finalQuizButton;
+    private LearningRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,7 @@ public class ResultsActivity extends AppCompatActivity {
         daysRecyclerView = findViewById(R.id.days_recycler_view);
         loadingIndicator = findViewById(R.id.loading_indicator);
         errorText = findViewById(R.id.error_text);
+        repository = new LearningRepository(this);
 
         learningProfile = new LearningProfile(
                 getIntent().getStringExtra("expertise_level"),
@@ -240,6 +248,62 @@ public class ResultsActivity extends AppCompatActivity {
         loadingIndicator.setVisibility(View.GONE);
         daysRecyclerView.setVisibility(View.VISIBLE);
         dayAdapter.updateDays(lessons);
+
+        new SavePlanTask().execute(lessons);
+    }
+
+    private void savePlanToDatabase(List<DailyLesson> lessons) {
+        LearningPlanEntity plan = new LearningPlanEntity(
+                learningProfile.getExpertiseLevel(),
+                learningProfile.getNumberOfDays(),
+                learningProfile.getEndGoal(),
+                learningProfile.getTopic(),
+                System.currentTimeMillis()
+        );
+
+        repository.savePlan(plan, lessons, () -> Log.d(TAG, "Plan saved to database"));
+    }
+
+    private class SavePlanTask extends AsyncTask<List<DailyLesson>, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(List<DailyLesson>... lessons) {
+            final boolean[] success = {false};
+
+            LearningPlanEntity plan = new LearningPlanEntity(
+                    learningProfile.getExpertiseLevel(),
+                    learningProfile.getNumberOfDays(),
+                    learningProfile.getEndGoal(),
+                    learningProfile.getTopic(),
+                    System.currentTimeMillis()
+            );
+
+            repository.savePlan(plan, lessons[0], () -> success[0] = true);
+
+            // Wait for callback
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return success[0];
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success) {
+            if (success) {
+                showSnackbar("Plan saved successfully!");
+            } else {
+                showSnackbar("Failed to save plan");
+            }
+        }
+    }
+
+    private void showSnackbar(String message) {
+        View rootView = findViewById(android.R.id.content);
+        if (rootView != null) {
+            Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     private void showError(String error) {

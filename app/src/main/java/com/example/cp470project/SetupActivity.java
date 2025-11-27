@@ -15,6 +15,7 @@ public class SetupActivity extends AppCompatActivity {
     private EditText goalInput;
     private EditText topicInput;
     private Button generateButton;
+    private Button viewPlansButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class SetupActivity extends AppCompatActivity {
         goalInput = findViewById(R.id.goal_input);
         topicInput = findViewById(R.id.topic_input);
         generateButton = findViewById(R.id.generate_button);
+        viewPlansButton = findViewById(R.id.view_plans_button);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -40,6 +42,11 @@ public class SetupActivity extends AppCompatActivity {
                 LearningProfile profile = collectUserInput();
                 navigateToResults(profile);
             }
+        });
+
+        viewPlansButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, com.example.cp470project.MyPlansActivity.class);
+            startActivity(intent);
         });
     }
 

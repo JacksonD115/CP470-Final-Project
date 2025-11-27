@@ -116,6 +116,24 @@
 
         </Button>
 
+        <Button
+            android:id="@+id/view_plans_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Plans"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            >
+
+        </Button>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
 
 
